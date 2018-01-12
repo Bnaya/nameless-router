@@ -2,6 +2,8 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "mobx-react"
 import { observable, reaction } from "mobx"
+import { NamelessRouter } from "nameless-router";
+
 import {
     onSnapshot,
     onAction,
@@ -12,7 +14,6 @@ import {
     getSnapshot
 } from "mobx-state-tree"
 
-import createRouter from "./utils/router"
 import App from "./components/App"
 import "./index.css"
 
@@ -22,10 +23,16 @@ const fetcher = url => window.fetch(url).then(response => response.json())
 const shop = ShopStore.create(
     {},
     {
+        navigate(pathSearchHash) {
+          window.history.pushState(null, null, pathSearchHash)
+          nlRouter.navigate(pathSearchHash)
+        },
         fetch: fetcher,
         alert: m => console.log(m) // Noop for demo: window.alert(m)
     }
 )
+
+const nlRouter = new NamelessRouter(shop);
 
 const history = {
     snapshots: observable.shallowArray(),
@@ -50,21 +57,18 @@ ReactDOM.render(
 reaction(
     () => shop.view.currentUrl,
     path => {
-        if (window.location.pathname !== path) window.history.pushState(null, null, path)
+        if (window.location.pathname !== path) {
+          nlRouter.navigate({...window.location, pathname: path})
+          window.history.pushState(null, null, path)
+        }
     }
 )
 
-const router = createRouter({
-    "/book/:bookId": ({ bookId }) => shop.view.openBookPageById(bookId),
-    "/cart": shop.view.openCartPage,
-    "/": shop.view.openBooksPage
-})
 
 window.onpopstate = function historyChange(ev) {
-    if (ev.type === "popstate") router(window.location.pathname)
+  nlRouter.navigate(window.location)
 }
 
-router(window.location.pathname)
 
 // ---------------
 
