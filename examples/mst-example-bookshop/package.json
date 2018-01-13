@@ -16,7 +16,7 @@
     "react-dom": "^15.5.0",
     "react-tabs": "^1.0.0",
     "react-test-renderer": "^15.5.0",
-    "nameless-router": "^0.0.1"
+    "nameless-router": "~0.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
