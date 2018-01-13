@@ -1,5 +1,5 @@
 # Bookshop example
-
+## this is a modified version using [nlr](../../)
 ## Features
 
 * Routing as part of state
