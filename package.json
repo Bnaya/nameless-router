@@ -10,7 +10,8 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "examples/*"
+    "examples/*",
+    "internal/*"
   ],
   "devDependencies": {
     "@types/jest": "^22.0.1",
