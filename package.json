@@ -10,20 +10,24 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "examples/*"
+    "examples/*",
+    "internal/*"
   ],
   "devDependencies": {
     "@types/jest": "^22.0.1",
     "jest": "^22.0.6",
+    "lerna": "^2.7.0",
     "prettier": "^1.10.2",
     "ts-jest": "^22.0.1",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.6.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "yarn-tools": "^0.3.0"
   },
   "scripts": {
     "test": "jest",
-    "prettier-all": "prettier --write \"packages/**/*.{ts,tsx}\""
+    "prettier-all": "prettier --write \"packages/**/*.{ts,tsx}\"",
+    "yarn-tools-fix-duplicates": "yarn-tools fix-duplicates yarn.lock > yarn.lock.fixed && mv yarn.lock.fixed yarn.lock;"
   },
   "jest": {
     "collectCoverage": false,
