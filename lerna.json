@@ -3,5 +3,8 @@
   "packages": ["packages/*"],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "scope": [
+    "nameless-router"
+  ]
 }
