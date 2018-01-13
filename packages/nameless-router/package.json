@@ -1,6 +1,6 @@
 {
   "name": "nameless-router",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "dist/es5/index.js",
   "module": "dist/es5-esm/index.js",
   "es2017": "dist/es2017/index.js",
